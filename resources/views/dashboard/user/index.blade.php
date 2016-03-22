@@ -37,10 +37,12 @@
                                 <hr>
                                 <div class="form-group">
                                     <label>{{ trans('forms.user.api-token') }}</label>
+                                    @foreach ($current_user->apiKeys as $api_key)
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="api_key" disabled value="{{ $current_user->api_key }}">
-                                        <a href="/dashboard/user/{{ $current_user->id }}/api/regen" class="input-group-addon btn btn-danger">{{ trans('cachet.api.regenerate') }}</a>
+                                        <input type="text" class="form-control" name="api_key" disabled value="{{ $api_key->api_key }}">
+                                        <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/{{ $api_key->id }}" class="input-group-addon btn btn-danger">{{ trans('cachet.api.revoke') }}</a>
                                     </div>
+                                    @endforeach
                                     <span class="help-block">{{ trans('forms.user.api-token-help') }}</span>
                                 </div>
                                 <hr>
