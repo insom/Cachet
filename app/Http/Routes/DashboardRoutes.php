@@ -220,7 +220,7 @@ class DashboardRoutes
                     'uses' => 'UserController@showUser',
                 ]);
                 $router->post('/', 'UserController@postUser');
-                $router->get('{user}/api/regen', 'UserController@regenerateApiKey');
+                $router->get('{user}/api/revoke/{api_key}', 'UserController@revokeApiKey');
             });
 
             $router->group(['prefix' => 'api'], function (Registrar $router) {

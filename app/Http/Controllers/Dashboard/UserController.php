@@ -13,6 +13,7 @@ namespace CachetHQ\Cachet\Http\Controllers\Dashboard;
 
 use AltThree\Validator\ValidationException;
 use CachetHQ\Cachet\Models\User;
+use CachetHQ\Cachet\Models\ApiKey;
 use GrahamCampbell\Binput\Facades\Binput;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -71,10 +72,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function regenerateApiKey(User $user)
+    public function revokeApiKey(User $user, ApiKey $api_key)
     {
-        $user->api_key = User::generateApiKey();
-        $user->save();
+        $api_key->delete();
 
         return Redirect::route('dashboard.user');
     }
