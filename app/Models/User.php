@@ -141,6 +141,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * Lookup all of the API keys related to this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function apiKeys()
+    {
+        return $this->hasMany(ApiKey::class, 'user_id', 'id');
+    }
+
+    /**
      * Returns an API key.
      *
      * @return string
