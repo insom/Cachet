@@ -26,8 +26,8 @@ class ApiKey extends Model
      * @var string[]
      */
     protected $casts = [
-        'active'       => 'bool',
         'api_key'      => 'string',
+        'description'  => 'string',
     ];
 
     /**
@@ -37,8 +37,8 @@ class ApiKey extends Model
      */
     public $rules = [
         'user_id'      => 'int',
-        'api_key'      => 'required',
-        'active'       => 'required|bool',
+        'api_key'      => 'string|required',
+        'description'  => 'string',
     ];
 
     /**
