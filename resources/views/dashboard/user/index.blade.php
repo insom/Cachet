@@ -43,7 +43,10 @@
                                         <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/{{ $api_key->id }}" class="input-group-addon btn btn-danger">{{ trans('cachet.api.revoke') }}</a>
                                     </div>
                                     @endforeach
-                                    <span class="help-block">{{ trans('forms.user.api-token-help') }}</span>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="api_key" placeholder="API Key Description e.g. 'Jenkins Job'" value="">
+                                        <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/" class="input-group-addon btn btn-success">{{ trans('cachet.api.create') }}</a>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="form-group">
