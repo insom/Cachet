@@ -176,8 +176,8 @@ class DashboardRoutes
                     ]);
                     $router->get('{user}', ['as' => 'edit', 'uses' => 'TeamController@showTeamMemberView']);
                     $router->post('add', 'TeamController@postAddUser');
-                    $router->post('invite', 'TeamController@postInviteUser');
                     $router->post('{user}', 'TeamController@postUpdateUser');
+                    $router->post('invite', 'TeamController@postInviteUser');
                     $router->delete('{user}/delete', 'TeamController@deleteUser');
                 });
             });
@@ -221,6 +221,7 @@ class DashboardRoutes
                 ]);
                 $router->post('/', 'UserController@postUser');
                 $router->get('{user}/api/revoke/{api_key}', 'UserController@revokeApiKey');
+                $router->post('/{user}/api/create', 'UserController@createApiKey');
             });
 
             $router->group(['prefix' => 'api'], function (Registrar $router) {

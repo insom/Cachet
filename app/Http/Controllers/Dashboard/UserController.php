@@ -66,7 +66,7 @@ class UserController extends Controller
     }
 
     /**
-     * Regenerates the users API key.
+     * Revokes a user's API key.
      *
      * @param \CachetHQ\Cachet\Models\User $user
      *
@@ -77,5 +77,18 @@ class UserController extends Controller
         $api_key->delete();
 
         return Redirect::route('dashboard.user');
+    }
+
+    /**
+     * Creates a new API key.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createApiKey(User $user)
+    {
+        $userData = array_filter(Binput::only(['description']));
+
+        return Redirect::route('dashboard.user')
+            ->withSuccess(sprintf('%s %s', trans('dashboard.notifications.awesome'), trans('dashboard.team.edit.success')));
     }
 }

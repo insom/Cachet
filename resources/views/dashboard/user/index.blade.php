@@ -36,20 +36,6 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <label>{{ trans('forms.user.api-token') }}</label>
-                                    @foreach ($current_user->apiKeys as $api_key)
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="api_key" disabled value="{{ $api_key->api_key }}">
-                                        <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/{{ $api_key->id }}" class="input-group-addon btn btn-danger">{{ trans('cachet.api.revoke') }}</a>
-                                    </div>
-                                    @endforeach
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="api_key" placeholder="API Key Description e.g. 'Jenkins Job'" value="">
-                                        <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/" class="input-group-addon btn btn-success">{{ trans('cachet.api.create') }}</a>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
                                     <label class="checkbox-inline">
                                         <input type="hidden" name="google2fa" value="0">
                                         <input type='checkbox' name="google2fa" value="1" {{ $current_user->hasTwoFactor ? "checked" : "" }}>
@@ -71,6 +57,33 @@
                                 @endif
 
                                 <button type="submit" class="btn btn-success">{{ trans('forms.update') }}</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="UserAPIForm" class="form-vertical" role="form" action="/dashboard/user/{{ $current_user->id }}/api/create" method="POST">
+                    {!! csrf_field() !!}
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>{{ trans('forms.user.api-token') }}</label>
+                                    @foreach ($current_user->apiKeys as $api_key)
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="api_key" disabled value="{{ $api_key->api_key }} ({{ $api_key->description }})">
+                                        <a href="/dashboard/user/{{ $current_user->id }}/api/revoke/{{ $api_key->id }}" class="input-group-addon btn btn-danger">{{ trans('cachet.api.revoke') }}</a>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="form-group">
+                                        <input type="text" class="form-control" name="description" placeholder="API Key Description e.g. 'Jenkins Job'" value="">
+                                </div>
+                                <button type="submit" class="btn btn-success">{{ trans('cachet.api.create') }}</button>
                             </div>
                         </div>
                     </fieldset>
